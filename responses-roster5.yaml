@@ -1,0 +1,152 @@
+# Synthetic responses for the midterm demo across the 5-participant roster.
+#
+# Shape: { participantId: { widgetId: value } } per
+# docs/scan-pipeline.md §7. Every widget in the demo carries an
+# author-supplied `id=` attribute, so the keys here are stable across
+# source edits (no `w-<offset>` synthetics).
+#
+# This file is the SINGLE SOURCE OF TRUTH for canonical demo answers.
+# Three flows consume it:
+#
+#   1. Portal — `demo/setup.sh --portal` posts these as taker responses
+#      via `/api/exams/.../participants/<pid>/responses`. Whether each
+#      participant submits + which answers they post is driven by
+#      per-profile filters in setup.sh (see `profile_for`).
+#
+#   2. Portal — Exams view → "Scan testing" card → click "Open…"
+#      next to a participant → paste the relevant block into the
+#      modal's YAML editor → Synthesize scan → Recognize. The
+#      portal does one participant at a time, so you'll usually
+#      paste one block per session.
+#
+#   3. CLI — generate a degraded scan with:
+#        openexam scan-synth /tmp/midterm-build/participants/sjjasmit/exam.pdf \
+#          --layout /tmp/midterm-build/participants/sjjasmit/layout.json \
+#          --responses demo/course/responses-roster5.yaml \
+#          --participant sjjasmit \
+#          --out-dir /tmp/scan/sjjasmit/synth
+#      Then run recognition with:
+#        openexam scan /tmp/scan/sjjasmit/synth \
+#          --layout /tmp/midterm-build/participants/sjjasmit/layout.json \
+#          --out-dir /tmp/scan/sjjasmit/recognized
+#
+# Mass=12, velocity=7, g=9.81 → ek=294 J, h-max≈2.5 m, circuit i=3 A,
+# p=36 W, compare=less, fnet=6, direction=right, 0b1010+0b0110=16.
+
+sjjasmit:
+  velocity-canonical: Velocity
+  vectors-shorthand:  [Velocity, Acceleration, Momentum]
+  scheduling-parens:  Insertion sort (1946)
+  ek:                 '294'
+  h-max:              '2.5'
+  kinematics-cloze:   [newton, 'N', '1']
+  cidr-regex:         10.0.0.0/24
+  osi-match:
+    Layer 2 (Data link):   Ethernet (802.3)
+    Layer 3 (Network):     IP (IPv4/IPv6)
+    Layer 4 (Transport):   TCP
+    Layer 7 (Application): HTTP
+  i_amps:    '3'
+  p_watts:   '36'
+  compare:   less
+  fnet:      '6'
+  direction: right
+  cpu-pipeline:    Fetch → Decode → Execute → Memory → Writeback
+  binary-add:      '16'
+  bs-explanation: >-
+    Binary search works on a sorted array by repeatedly halving the
+    search range, so the number of comparisons doubles only when the
+    array doubles — that's logarithmic.
+
+skmajohn:
+  velocity-canonical: Velocity
+  vectors-shorthand:  [Velocity, Acceleration, Momentum]
+  scheduling-parens:  Insertion sort (1946)
+  ek:                 '294'
+  h-max:              '2.5'
+  kinematics-cloze:   [newton, 'N', '1']
+  cidr-regex:         192.168.1.0/24
+  osi-match:
+    Layer 2 (Data link):   Ethernet (802.3)
+    Layer 3 (Network):     IP (IPv4/IPv6)
+    Layer 4 (Transport):   TCP
+    Layer 7 (Application): HTTP
+  i_amps:    '3'
+  p_watts:   '36'
+  compare:   less
+  fnet:      '6'
+  direction: left      # wrong (should be right) — costs 0.5 × 6 = 3 points
+  cpu-pipeline:    Fetch → Decode → Execute → Memory → Writeback
+  binary-add:      '16'
+  bs-explanation: >-
+    On a sorted list each comparison cuts the remaining range in half,
+    so the algorithm finishes in log n steps instead of n.
+
+sljowill:
+  velocity-canonical: Velocity
+  vectors-shorthand:  [Velocity, Acceleration]         # missed Momentum → partial credit
+  scheduling-parens:  Merge sort (1948)                # wrong
+  ek:                 '294'
+  h-max:              '2.5'
+  kinematics-cloze:   [newton, 'n', '1']               # 'n' case-mismatch — partial credit
+  cidr-regex:         10.0.0.0/24
+  osi-match:
+    Layer 2 (Data link):   Ethernet (802.3)
+    Layer 3 (Network):     IP (IPv4/IPv6)
+    Layer 4 (Transport):   TCP
+    Layer 7 (Application): FTP             # wrong — match=allOrNothing → 0
+  i_amps:    '3'
+  p_watts:   '36'
+  compare:   less
+  fnet:      '6'
+  direction: right
+  cpu-pipeline:    Fetch → Decode → Execute → Memory → Writeback
+  binary-add:      '16'
+  bs-explanation: >-
+    It halves the array every step, so the time is logarithmic.
+
+sjpabrow:
+  velocity-canonical: Mass
+  vectors-shorthand:  [Speed, Velocity]
+  scheduling-parens:  Insertion sort (1946)
+  ek:                 '200'
+  h-max:              '3.0'
+  kinematics-cloze:   [newton, 'N', '1']
+  cidr-regex:         10.0.0/24                       # malformed CIDR
+  osi-match:
+    Layer 2 (Data link):   TCP
+    Layer 3 (Network):     Ethernet (802.3)
+    Layer 4 (Transport):   IP (IPv4/IPv6)
+    Layer 7 (Application): HTTP
+  i_amps:    '3'
+  p_watts:   '144'
+  compare:   more
+  fnet:      '14'
+  direction: right
+  cpu-pipeline:    Fetch → Decode → Memory → Execute → Writeback
+  binary-add:      '10'
+  bs-explanation: >-
+    Binary search is faster because it compares the middle element first.
+
+skrojone:
+  velocity-canonical: Speed
+  vectors-shorthand:  [Mass]
+  scheduling-parens:  Quicksort (1959)
+  ek:                 '100'
+  h-max:              '5.0'
+  kinematics-cloze:   [pound, lb, '9']
+  cidr-regex:         not a CIDR
+  osi-match:
+    Layer 2 (Data link):   HTTP
+    Layer 3 (Network):     TCP
+    Layer 4 (Transport):   Ethernet (802.3)
+    Layer 7 (Application): IP (IPv4/IPv6)
+  i_amps:    '12'
+  p_watts:   '48'
+  compare:   more
+  fnet:      '0'
+  direction: left
+  cpu-pipeline:    Fetch → Execute → Decode → Memory → Writeback
+  binary-add:      '99'
+  bs-explanation: >-
+    Binary search is just smarter.

@@ -1,0 +1,29 @@
+/* SPDX-License-Identifier: CC-BY-4.0 */
+/* Compact design — dense sans, margin points badge. */
+
+.oe-document {
+  max-width: 920px;
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", sans-serif;
+  line-height: 1.4;
+  padding-right: 5rem;
+}
+.oe-assignment {
+  border-left: 2px solid #94a3b8;
+  margin: 1rem 0;
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+}
+.oe-assignment-title {
+  margin: 0 0 0.4rem 0;
+  border-bottom: 0;
+  font-size: 0.95rem;
+}
+.oe-assignment-points-margin {
+  right: -4rem;
+  top: 0.6rem;
+  background: #fef3c7;
+  border-color: #fbbf24;
+}
+.oe-hint, .oe-solution {
+  font-size: 0.85em;
+}

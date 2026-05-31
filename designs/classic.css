@@ -1,0 +1,36 @@
+/* SPDX-License-Identifier: CC-BY-4.0 */
+/* Classic design — wide single-column, serif body, centred cover. */
+
+.oe-document {
+  max-width: 720px;
+  font-family: "Linux Libertine", Georgia, serif;
+  line-height: 1.6;
+}
+.oe-cover-page {
+  border-bottom: 3px double #1f2937;
+  margin: 5rem auto;
+  padding: 3rem 0;
+}
+.oe-cover-title {
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.oe-assignment {
+  border-left: 0;
+  background: transparent;
+  padding: 0;
+  margin: 2rem 0;
+}
+.oe-assignment-title {
+  font-size: 1.15rem;
+  border-bottom: 1px solid #cbd5e1;
+}
+.oe-assignment-number {
+  font-weight: 700;
+  color: #1e293b;
+}
+.oe-assignment-points {
+  font-style: italic;
+  color: #475569;
+}

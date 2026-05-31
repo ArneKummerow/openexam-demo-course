@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-4.0
+#
+# Compact design: dense layout, no cover page, no assignment
+# numbering, per-assignment points floated to the right margin.
+# Optimised for short quizzes that should fit on one or two pages.
+#
+# Spec reference: spec/language.md §12.
+
+spec: openexam/2
+title: "Compact (no cover, margin points)"
+targets: [html, latex]
+
+config:
+  cover-page: none
+  assignment-numbering: hidden
+  points-placement: margin
+
+html:
+  stylesheets:
+    - ./compact.css
+
+latex:
+  preamble: ./compact.tex

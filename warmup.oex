@@ -1,0 +1,39 @@
+---
+spec: openexam/2
+title: "CS101 warmup quiz"
+params:
+  yearOffset: 0
+---
+
+<!--
+  Demo: standalone .oex that references the built-in `student`,
+  `date`, and `seed` globals from spec/language.md §12 directly in
+  the body. Renders with the spec's preview participant ({name: "John
+  Doe", seed: 42}) when called via `openexam preview`.
+-->
+# Warmup, {student.name}!
+
+Quick three-question warmup, generated on **{date.toISOString().slice(0, 10)}**
+with seed **{seed}**.
+
+<assignment id=warmup-arithmetic>
+### Quick mental math
+What is **{seed % 13} × 3**?
+
+<numeric answer={(seed % 13) * 3} tolerance=0/>
+</assignment>
+
+<assignment id=warmup-bool>
+### One quick T/F
+*True or false:* In two's-complement arithmetic, the most-significant bit
+of a signed 8-bit value is the sign bit.
+
+<trueFalse answer=true/>
+</assignment>
+
+<assignment id=warmup-text>
+### One quick free-text
+Name the most-recent IEEE 754 floating-point revision year. Bare integer.
+
+<freeText expected="2019"/>
+</assignment>
