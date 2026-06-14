@@ -1,0 +1,25 @@
+# Shared department defaults for `openexam build`. Pass via:
+#
+#   openexam build midterm.oex --defaults defaults.yaml --participants roster.csv
+#
+# Precedence (highest wins):
+#   CLI flag  >  this YAML  >  the .oex's own frontmatter
+
+seed: 42
+# `design:` picks the LaTeX/PDF visual style (spec/language.md §12). An
+# exam's design is LaTeX-only now: either `designs/classic.design.yaml`
+# (cover page + numbered assignments + header-row points) or
+# `designs/compact.design.yaml` (dense layout with points in the margin).
+# The on-screen HTML look is chosen globally in the portal's top-bar
+# design selector, from the portal-installed HTML designs in
+# `demo/html-designs/` — it is not set here.
+design: ./designs/classic.design.yaml
+# `pointsUnit:` sets the exam's smallest grading increment (default
+# 0.5). Every grade must be a multiple of it; auto-graded scores are
+# rounded onto the grid. Use `none` to allow any score.
+# pointsUnit: 0.5
+# Department-wide param defaults can live here too. The midterm's
+# frontmatter declares `mass`, `velocity`, `g` with their own defaults;
+# anything you put here would override those if the names match.
+params:
+  g: 9.81

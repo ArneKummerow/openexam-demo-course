@@ -1,0 +1,106 @@
+---
+spec: openexam/2
+title: "CS101 midterm exam"
+params:
+  # These mirror `local/openexam-demo-library:assignments/projectile.oex`'s
+  # `params:` block. Until caller-side `<import>` binding lands (see
+  # CLAUDE.md §8 carryover 7), the imported body inherits *this* file's
+  # scope, so the names must match.
+  #
+  # The `{default: …}` object-literal form is required today because the
+  # spec's `default=…` keyword form trips the JS reserved-word rule —
+  # see CLAUDE.md §8 carryover 4.
+  mass: "int({default: 12})"
+  velocity: "oneOf(3, 5, 7, 9, {default: 7})"
+  g: 9.81
+# `participants:` and `seed:` are intentionally absent here. The demo
+# walkthrough builds this exam via:
+#   openexam build midterm.oex --defaults defaults.yaml --participants roster.csv
+# The roster + the shared department seed live in those external files
+# so this `.oex` is reusable across cohorts.
+---
+
+<!--
+  Demo: this is the entry point. It imports seven questions from the
+  sibling openexam-demo-library repo via `<import>` and adds two
+  inline questions of its own. Section headings like "Part 1" /
+  "Part 2" stay in the rendered exam; the per-question dev annotations
+  ("multipleChoice (no sugar)", "matchPairs canonical form", …) live
+  in HTML comments so they don't leak to the student.
+-->
+# CS101 Midterm — {student.name}
+
+Date: **{date.toISOString().slice(0, 10)}**.
+
+---
+
+## Part 1 — Concepts
+
+<!-- 1.1 multipleChoice — canonical (no sugar) -->
+<import from="local/openexam-demo-library:assignments/velocity-mc.oex"/>
+
+<!-- 1.2 multipleChoice — [x] / [ ] shorthand -->
+<import from="local/openexam-demo-library:assignments/vectors-mc.oex"/>
+
+<!-- 1.3 multipleChoice — (x) / ( ) parens shorthand + oneWrongMinusOne -->
+<import from="local/openexam-demo-library:assignments/scheduling-mc.oex"/>
+
+---
+
+## Part 2 — Mechanics
+
+<!-- 1.4 numeric with expression-slot answers (reads params.mass, params.velocity, params.g from this source's frontmatter) -->
+<import from="local/openexam-demo-library:assignments/projectile.oex"/>
+
+<!-- 1.5 clozeFill with mixed numeric + string blanks -->
+<import from="local/openexam-demo-library:assignments/kinematics-cloze.oex"/>
+
+---
+
+## Part 3 — Networking
+
+<!-- 1.6 regexMatch — CIDR notation -->
+<import from="local/openexam-demo-library:assignments/cidr-regex.oex"/>
+
+<!-- 1.7 matchPairs — canonical <pair left=... right=.../> form -->
+<import from="local/openexam-demo-library:assignments/osi-match.oex"/>
+
+---
+
+## Part 4 — Multi-widget assignments
+
+<!-- 1.8 widget-owned multi-widget — each widget carries its own points= -->
+<import from="local/openexam-demo-library:assignments/circuit-multi.oex"/>
+
+<!-- 1.9 single-cell multi-widget — one cross-widget validator + assignment-level points -->
+<import from="local/openexam-demo-library:assignments/forces-validator.oex"/>
+
+---
+
+## Part 5 — Architecture
+
+<!-- Inline question: <multipleChoice> with parens-shorthand -->
+<assignment id=cpu-pipeline title="Pipeline stages">
+A classic 5-stage RISC pipeline orders its stages as:
+
+<multipleChoice id=cpu-pipeline layout="stacked">
+  ( ) Fetch → Decode → Memory → Execute → Writeback
+  (x) Fetch → Decode → Execute → Memory → Writeback
+  ( ) Decode → Fetch → Execute → Writeback → Memory
+  ( ) Fetch → Execute → Decode → Memory → Writeback
+</multipleChoice>
+</assignment>
+
+<!-- Inline question: numeric with an expression-slot answer -->
+<assignment id=binary-add title="Add the two numbers">
+What is **0b1010** plus **0b0110**, in decimal?
+
+<numeric id=binary-add answer={0b1010 + 0b0110} tolerance=0/>
+</assignment>
+
+---
+
+## Part 6 — LLM-graded free response
+
+<!-- 1.10 freeText with mock-llm auto-grade: a rubric of concepts → score + justification -->
+<import from="local/openexam-demo-library:assignments/binary-search-llm.oex"/>

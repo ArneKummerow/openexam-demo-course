@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: CC-BY-4.0
+#
+# Compact LaTeX design: dense print layout, no cover page, no assignment
+# numbering, per-assignment points floated to the right margin.
+# Optimised for short quizzes that should fit on one or two pages.
+#
+# This is a LaTeX (PDF) design — it owns the structural config + the
+# preamble. The on-screen HTML look is a separate, portal-installed HTML
+# design (see ../../html-designs/ + spec/language.md §12).
+
+spec: openexam/2
+title: "Compact (no cover, margin points)"
+target: latex
+
+config:
+  cover-page: none
+  assignment-numbering: hidden
+  points-placement: margin
+
+latex:
+  preamble: ./compact.tex

@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: CC-BY-4.0
+#
+# Classic LaTeX design: traditional one-column print layout with a
+# centered cover page, numbered assignments, and per-assignment points
+# rendered inline in the title row.
+#
+# This is a LaTeX (PDF) design — it owns the structural config + the
+# preamble. The on-screen HTML look is a separate, portal-installed HTML
+# design (see ../../html-designs/ + spec/language.md §12).
+
+spec: openexam/2
+title: "Classic (one-column, cover page, header points)"
+target: latex
+
+config:
+  cover-page: title
+  assignment-numbering: per-document
+  points-placement: assignment-header
+
+latex:
+  preamble: ./classic.tex

@@ -1,0 +1,19 @@
+{
+  "name": "openexam-demo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "End-to-end OpenExam demo. Walks build/preview/validate/grade against hand-written .oex sources that exercise stdlib + first-party addons. See README.md.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "dependencies": {
+    "@openexam/cli": "workspace:*",
+    "@openexam/cloze-fill": "workspace:*",
+    "@openexam/free-text": "workspace:*",
+    "@openexam/match-pairs": "workspace:*",
+    "@openexam/multiple-choice": "workspace:*",
+    "@openexam/numeric-input": "workspace:*",
+    "@openexam/regex-match": "workspace:*",
+    "@openexam/true-false": "workspace:*",
+    "yaml": "^2.8.4"
+  }
+}

@@ -1,0 +1,10 @@
+% SPDX-License-Identifier: CC-BY-4.0
+% Compact design — tight margins, smaller default font, two-column
+% friendly. The points badge moves to the margin via
+% \oedesignpointsplacement = margin (set by the renderer).
+% `geometry` is already loaded by the base preamble, so reconfigure
+% it with \geometry{...} — a second \usepackage[...]{geometry} would
+% raise "Option clash for package geometry" and abort the PDF build.
+\geometry{margin=1.2cm}
+\linespread{1.0}
+\renewcommand{\baselinestretch}{1.0}
